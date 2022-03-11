@@ -1,7 +1,9 @@
 package com.aydinbattal.midterm_aydin.api
 
 import com.aydinbattal.midterm_aydin.models.Game
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 
 /**
  * Midterm-Aydin created by aydin
@@ -10,4 +12,7 @@ import retrofit2.http.GET
 interface CustomAPI {
     @GET("/games")
     suspend fun getGames():List<Game>
+
+    @POST("/games")
+    suspend fun addGame(@Body gameToAdd:Game):Game
 }

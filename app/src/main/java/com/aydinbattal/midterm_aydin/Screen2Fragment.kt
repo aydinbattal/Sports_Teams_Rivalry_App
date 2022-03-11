@@ -31,7 +31,8 @@ class Screen2Fragment : Fragment(R.layout.fragment_screen2) {
 
         // observer on the vm's games List
         vm.gamesList.observe(viewLifecycleOwner, Observer {
-            Log.d("ABC", "Observed a change in the product list")
+            Log.d("ABC", "Observed a change in the game list")
+            Log.d("ABC", it.toString())
             adapter.submitList(it)
         })
 
