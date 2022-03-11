@@ -1,7 +1,6 @@
 package com.aydinbattal.midterm_aydin.viewmodels
 
 import androidx.lifecycle.ViewModel
-import com.aydinbattal.midterm_aydin.models.Team
 import kotlin.random.Random
 
 /**
