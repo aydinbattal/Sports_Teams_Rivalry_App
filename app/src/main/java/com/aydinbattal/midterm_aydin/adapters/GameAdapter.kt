@@ -1,5 +1,6 @@
 package com.aydinbattal.midterm_aydin.adapters
 
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -47,8 +48,26 @@ class GameAdapter : ListAdapter<Game, GameAdapter.GameViewHolder>(GameAdapter.Ga
         // 1. get the current item from the list
         val item = getItem(position)
         // 2. associate the employee's information with the UI in the row layout
-        holder.binding.tvOneResultInHistory.text = item.winner + "win!"
-        holder.binding.tvOneScoreInHistory.text = item.winner + ":" + item.tigers.toString()
+
+
+        var loser = ""
+        var winnerScore = 0
+        var loserScore = 0
+
+        if (item.winner.lowercase() == "tigers"){
+            winnerScore = item.tigers
+            loserScore = item.lions
+            loser = "Lions"
+            holder.binding.tvOneResultInHistory.setTextColor(Color.parseColor("#FF5722"))
+        } else {
+            holder.binding.tvOneResultInHistory.setTextColor(Color.parseColor("#00BCD4"))
+            winnerScore = item.lions
+            loserScore = item.tigers
+            loser = "Tigers"
+        }
+
+        holder.binding.tvOneResultInHistory.text = item.winner + " win!"
+        holder.binding.tvOneScoreInHistory.text = item.winner + ": " + winnerScore.toString() + " - " + loser + ": " + loserScore
 
     }
 }
