@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.aydinbattal.midterm_aydin.databinding.FragmentScreen1Binding
 import com.aydinbattal.midterm_aydin.viewmodels.Screen1ViewModel
 import com.aydinbattal.midterm_aydin.viewmodels.Screen1ViewModelFactory
@@ -29,6 +30,13 @@ class Screen1Fragment : Fragment(R.layout.fragment_screen1) {
             binding.tvResult.text = "Winner is: " + vm.winner
             binding.tvScore1.text = vm.team1Score.toString()
             binding.tvScore2.text = vm.team2Score.toString()
+            //todo: save result to api
+        }
+
+        binding.btnHistory.setOnClickListener{
+            val action = Screen1FragmentDirections.actionScreen1FragmentToScreen2Fragment()
+
+            findNavController().navigate(action)
         }
     }
 }
