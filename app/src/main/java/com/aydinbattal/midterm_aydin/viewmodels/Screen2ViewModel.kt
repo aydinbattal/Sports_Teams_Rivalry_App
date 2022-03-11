@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aydinbattal.midterm_aydin.api.CustomAPI
+import com.aydinbattal.midterm_aydin.data.Repository
 import com.aydinbattal.midterm_aydin.models.Game
 import kotlinx.coroutines.launch
 
@@ -13,7 +14,7 @@ import kotlinx.coroutines.launch
  * student ID : 991521740
  * on 2022-03-10 */
 
-class Screen2ViewModel(val api: CustomAPI): ViewModel() {
+class Screen2ViewModel(val repo: Repository): ViewModel() {
 
     val gamesList:MutableLiveData<List<Game>> = MutableLiveData<List<Game>>(listOf())
 
@@ -24,7 +25,7 @@ class Screen2ViewModel(val api: CustomAPI): ViewModel() {
     fun getAllGames() {
         viewModelScope.launch {
             try {
-                val gamesFromAPI:List<Game> = api.getGames()
+                val gamesFromAPI:List<Game> = repo.getAllGames()
                 gamesList.postValue(gamesFromAPI)
                 Log.d("ABC", "${gamesFromAPI}")
             } catch (e:Exception) {

@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aydinbattal.midterm_aydin.adapters.GameAdapter
 import com.aydinbattal.midterm_aydin.api.RetrofitInstance
+import com.aydinbattal.midterm_aydin.data.Repository
 import com.aydinbattal.midterm_aydin.databinding.FragmentScreen1Binding
 import com.aydinbattal.midterm_aydin.databinding.FragmentScreen2Binding
 import com.aydinbattal.midterm_aydin.viewmodels.Screen1ViewModel
@@ -20,9 +21,15 @@ import com.aydinbattal.midterm_aydin.viewmodels.Screen2ViewModelFactory
 
 class Screen2Fragment : Fragment(R.layout.fragment_screen2) {
 
+    // 1. Create an instance of the API
+    private val api by lazy { RetrofitInstance.retrofitService }
+
+    // 2. Create an instance of the repository and pass it the API
+    private val repository by lazy { Repository(api) }
+
     // view model
     private val vm: Screen2ViewModel by viewModels{
-        Screen2ViewModelFactory(RetrofitInstance.retrofitService)
+        Screen2ViewModelFactory(repository)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

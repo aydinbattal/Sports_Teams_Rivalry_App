@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.aydinbattal.midterm_aydin.api.RetrofitInstance
+import com.aydinbattal.midterm_aydin.data.Repository
 import com.aydinbattal.midterm_aydin.databinding.FragmentScreen1Binding
 import com.aydinbattal.midterm_aydin.models.Game
 import com.aydinbattal.midterm_aydin.viewmodels.Screen1ViewModel
@@ -19,9 +20,15 @@ import kotlin.random.Random
 
 class Screen1Fragment : Fragment(R.layout.fragment_screen1) {
 
+    // 1. Create an instance of the API
+    private val api by lazy { RetrofitInstance.retrofitService }
+
+    // 2. Create an instance of the repository and pass it the API
+    private val repository by lazy { Repository(api) }
+
     // view model
     private val vm: Screen1ViewModel by viewModels{
-        Screen1ViewModelFactory(RetrofitInstance.retrofitService)
+        Screen1ViewModelFactory(repository)
     }
 
 
